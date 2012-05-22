@@ -13,9 +13,20 @@ namespace :deploy do
 	task :finalize_update do
 	end
 
+	task :link_roles do
+		Dir.glob( "roles/*.json" ).each do |path|
+			roleFileName = File::basename( path )
+			run( "ln -s /var/www/%s/current/chef/roles/%s /var/chef-solo/roles/%s" % [
+				application, roleFileName, roleFileName
+			])
+		end
+	end
+	after "deploy:create_symlink", "deploy:link_roles"
+
 	task :link_chef do
 		run( "ln -s /var/www/kson-chef/current/ /var/www/kson-chef/current/chef" )
 	end
-	after "deploy:create_symlink", "deploy:link_chef" 
+	after "deploy:link_roles", "deploy:link_chef" 
+
 end
 

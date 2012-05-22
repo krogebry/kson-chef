@@ -17,5 +17,5 @@ cookbook_paths = []
 end
 coobook_path cookbook_paths
 #role_path role_paths
-role_path "/var/www/kson-chef/current/roles/"
+#role_path "/var/www/kson-chef/current/roles/"
 
