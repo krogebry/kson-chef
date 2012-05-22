@@ -15,7 +15,7 @@ cookbook_paths = []
 	#role_paths.push( "/var/www/%s/current/chef/roles" % appName )
 	cookbook_paths.push( "/var/www/%s/current/chef/cookbooks" % appName )
 end
-coobook_path cookbook_paths
+cookbook_path cookbook_paths
 #role_path role_paths
 role_path "/var/chef-solo/roles"
 
