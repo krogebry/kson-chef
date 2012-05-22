@@ -11,8 +11,11 @@ load 'config/deploy' # remove this line to skip loading any of the default tasks
 
 namespace :deploy do
 	task :finalize_update do
-		run( "ln -s /var/www/kson-chef/current/chef /var/www/kson-chef/current/" )
 	end
+
+	task :link_chef do
+		run( "ln -s /var/www/kson-chef/current/ /var/www/kson-chef/current/chef" )
+	end
+	after "deploy:create_symlink", "deploy:link_chef" 
 end
 
-#after :deploy, ""

@@ -12,9 +12,10 @@ role_paths = []
 cookbook_paths = []
 
 ["kson-chef","application_name"].each do |appName|
-	role_paths.push( "/var/www/%s/current/chef/roles" % appName )
+	#role_paths.push( "/var/www/%s/current/chef/roles" % appName )
 	cookbook_paths.push( "/var/www/%s/current/chef/cookbooks" % appName )
 end
 coobook_path cookbook_paths
-role_path role_paths
+#role_path role_paths
+role_path "/var/www/kson-chef/current/roles/"
 
