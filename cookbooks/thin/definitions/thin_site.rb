@@ -63,7 +63,7 @@ define :thin_site do
 		mode "0755"
 		owner "root"
 		group "root"
-		source "thin_site.yml.erb"
+		source "thin_init.erb"
 		cookbook "thin"
 		variables({
 			:port => params[:port],
