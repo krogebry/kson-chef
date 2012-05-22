@@ -1,0 +1,11 @@
+{
+  "name": "app_server",
+  "default_attributes": { 
+		"fs_config_dir": "/etc/thin"
+	},
+  "override_attributes": { },
+  "json_class": "Chef::Role",
+  "description": "Application Server (thin)",
+  "chef_type": "role",
+  "run_list": [ "recipe[thin::default]" ]
+}

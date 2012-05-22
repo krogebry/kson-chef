@@ -1,0 +1,11 @@
+{
+  "name": "base",
+  "default_attributes": { 
+		"fs_web_root": "/var/www"
+	},
+  "override_attributes": { },
+  "json_class": "Chef::Role",
+  "description": "Base",
+  "chef_type": "role",
+  "run_list": [ "recipe[base::default]" ]
+}
