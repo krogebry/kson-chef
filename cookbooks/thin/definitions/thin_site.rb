@@ -50,6 +50,7 @@ define :thin_site do
 		owner "root"
 		group "root"
 		source "thin_site.yml.erb"
+		cookbook "thin"
 		variables({
 			:port => params[:port],
 			:name => params[:name],
@@ -63,6 +64,7 @@ define :thin_site do
 		owner "root"
 		group "root"
 		source "thin_site.yml.erb"
+		cookbook "thin"
 		variables({
 			:port => params[:port],
 			:name => params[:name],
