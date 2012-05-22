@@ -9,8 +9,7 @@ set :user,'ubuntu'
 
 set :deploy_to,"/var/www/%s" % application
 
-#role :app,"app0.ksonsoftware.com", :primary => true
-role :app,"app1.ksonsoftware.com", :primary => true
+role :app,"app2.ksonsoftware.com", :primary => true
 
 #role :web, "your web-server here"                          # Your HTTP server, Apache/etc
 #role :app, "your app-server here"                          # This may be the same as your `Web` server
