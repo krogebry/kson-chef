@@ -16,7 +16,7 @@ namespace :deploy do
 	task :link_roles do
 		Dir.glob( "roles/*.json" ).each do |path|
 			roleFileName = File::basename( path )
-			run( "if [ -L /var/chef-solo/roles/%s ]; then ln -s /var/www/%s/current/chef/roles/%s /var/chef-solo/roles/%s; fi" % [
+			run( "if [ ! -L /var/chef-solo/roles/%s ]; then ln -s /var/www/%s/current/chef/roles/%s /var/chef-solo/roles/%s; fi" % [
 				roleFileName, application, roleFileName, roleFileName
 			])
 		end
