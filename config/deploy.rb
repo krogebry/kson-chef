@@ -2,8 +2,8 @@
 # Deployment configuration
 
 set :scm, :git
-set :repository, "git@github.com:krogebry/bap.git"
-set :application, "application_name"
+set :repository, "git@github.com:krogebry/kson-chef.git"
+set :application, "kson-chef"
 
 set :user,'ubuntu'
 

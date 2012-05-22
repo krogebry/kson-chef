@@ -7,10 +7,13 @@ cache_type "BasicFile"
 cache_options({ :path => "%s/.chef/checksums" % ENV['HOME'], :skip_expires => true })
 file_cache_path "%s/.chef/cache/" % ENV['HOME']
 file_backup_path "%s/.chef/cache/" % ENV['HOME']
-cookbook_path [
-	"/var/www/application_name/chef/cookbooks"
+
+cookbook_paths = []
+
+["kson-chef","application_name"].each do |appName|
+	role_paths.push( "/var/www/%s/chef/roles" % appName
+	cookbook_paths.push( "/var/www/%s/chef/cookbooks" % appName
 ]
-role_path [
-	"/home/krogebry/Dropbox/Private/Krogebry/chef/roles"
-]
+coobook_path cookbook_paths
+role_path role_paths
 
