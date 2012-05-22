@@ -10,7 +10,7 @@
 ### END INIT INFO
 # Original author: Forrest Robertson
 
-DAEMON=/usr/bin/thin
+DAEMON=/usr/local/bin/thin
 SCRIPT_NAME=/etc/init.d/<%= @name %>_<%= @env_name %>
 CONFIG_FILE="<%= node.default["thin"]["fs_etc_root"] %>/<%= @env_name %>/<%= @name %>.yml"
 case "$1" in

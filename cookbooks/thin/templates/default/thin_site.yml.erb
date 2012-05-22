@@ -2,7 +2,7 @@
 pid: <%= @node.default["thin"]["fs_pid_root"] %>/<%= @env_name %>_<%= @name %>.pid
 log: <%= @node.default["thin"]["fs_log_root"] %>/<%= @env_name %>/<%= @name %>.log
 port: <%= @port.to_i %>
-chdir: <%= @node.default["thin"]["fs_www_root"] %>/<%= @name %>/
+chdir: <%= @node.default["thin"]["fs_www_root"] %>/<%= @name %>/current/rails/
 rackup: <%= @node.default["thin"]["rackup"] %>
 timeout: <%= @node.default["thin"]["timeout"].to_i() %>
 servers: <%= @node.default["thin"]["servers"] %>
