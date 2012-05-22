@@ -1,0 +1,14 @@
+--- 
+pid: <%= @node.default["thin"]["fs_pid_root"] %>/<%= @env_name %>_<%= @name %>.pid
+log: <%= @node.default["thin"]["fs_log_root"] %>/<%= @env_name %>/<%= @name %>.log
+port: <%= @port.to_i %>
+chdir: <%= @node.default["thin"]["fs_www_root"] %>/<%= @name %>/
+rackup: <%= @node.default["thin"]["rackup"] %>
+timeout: <%= @node.default["thin"]["timeout"].to_i() %>
+servers: <%= @node.default["thin"]["servers"] %>
+address: <%= @node.default["thin"]["address"] %>
+require: [<%= @node.default["thin"]["require"].join( "," ) %>]
+max_conns: <%= @node.default["thin"]["max_conns"].to_i() %>
+daemonize: <%= @node.default["thin"]["daemonize"] %>
+environment: <%= @env_name %>
+max_persistent_conns: <%= @node.default["thin"]["max_persistent_conns"].to_i() %>
