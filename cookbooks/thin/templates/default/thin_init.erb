@@ -12,11 +12,10 @@
 
 DAEMON=/usr/bin/thin
 SCRIPT_NAME=/etc/init.d/<%= @name %>_<%= @env_name %>
-CONFIG_FILE="<%= node.default["thin"]["fs_etc_root"] %>/<%= @name %>.yml"
+CONFIG_FILE="<%= node.default["thin"]["fs_etc_root"] %>/<%= @env_name %>/<%= @name %>.yml"
 case "$1" in
   start)
-        if [[ "$USER" == "ubuntu" ]]
-				then
+        if [ "$USER" = "ubuntu" ]; then
 					$DAEMON start -C $CONFIG_FILE
 				else
 					su ubuntu -c $DAEMON start -C $CONFIG_FILE
