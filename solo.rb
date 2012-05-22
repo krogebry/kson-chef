@@ -11,8 +11,8 @@ file_backup_path "%s/.chef/cache/" % ENV['HOME']
 cookbook_paths = []
 
 ["kson-chef","application_name"].each do |appName|
-	role_paths.push( "/var/www/%s/chef/roles" % appName
-	cookbook_paths.push( "/var/www/%s/chef/cookbooks" % appName
+	role_paths.push( "/var/www/%s/chef/roles" % appName )
+	cookbook_paths.push( "/var/www/%s/chef/cookbooks" % appName )
 ]
 coobook_path cookbook_paths
 role_path role_paths
