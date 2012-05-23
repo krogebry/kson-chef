@@ -32,13 +32,13 @@ server {
 	location /400.html { root <%= node.default["nginx"]["fs_www_root"] %>/<%= @name %>/<%= @env_name %>/public/errors/; }
 	location /500.html { root <%= node.default["nginx"]["fs_www_root"] %>/<%= @name %>/<%= @env_name %>/public/errors/; }
 
-	<% if(params[:enable_ssl] == true) %>
+	<% if(@enable_ssl == true) %>
 	rewrite /login(.*) https://www.heylu.com/login$1 permanent;
 	rewrite /register(.*) https://www.heylu.com/register$1 permanent;
 	<% end %>
 
 	location / {
-		<% if(params[:enable_static] == true) %>
+		<% if(@enable_static == true) %>
 		root /var/www/heylu/offline/;
 		<% else %>
 		proxy_set_header X-Real-IP $remote_addr;
@@ -47,7 +47,7 @@ server {
 	}
 }
 
-<% if(params[:enable_ssl] == true) %>
+<% if(@enable_ssl == true) %>
 server {
 	listen 443 default;
 
@@ -68,7 +68,7 @@ server {
 	location /500.html { root <%= node.default["nginx"]["fs_www_root"] %>/<%= @name %>/<%= @env_name %>/public/errors/; }
 
 	location / {
-		<% if(params[:enable_static] == true) %>
+		<% if(@enable_static == true) %>
 		root /var/www/heylu/offline/;
 		<% else %>
 		proxy_set_header X-Real-IP $remote_addr;
