@@ -11,12 +11,3 @@ package "mongodb" do
 	action :install
 end
 
-template "/etc/mongodb/mongodb.conf" do
-	mode "0755"
-	owner "root"
-	group "root"
-	source "mongodb.conf.erb"
-	variables({
-		
-	})
-end
