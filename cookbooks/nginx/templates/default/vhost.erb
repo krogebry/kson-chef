@@ -4,9 +4,6 @@ upstream <%= @env_name %>_<%= @name %> {
 	<% @upstreams.each do |up_stream| %>
 	server <%= up_stream %>;
 	<% end %>
-	#server 127.0.0.1:6910; 
-	#server 127.0.0.1:6911; 
-	#server 127.0.0.1:6912; 
 }
 
 server {
@@ -35,7 +32,7 @@ server {
 	location /400.html { root <%= node.default["nginx"]["fs_www_root"] %>/<%= @name %>/<%= @env_name %>/public/errors/; }
 	location /500.html { root <%= node.default["nginx"]["fs_www_root"] %>/<%= @name %>/<%= @env_name %>/public/errors/; }
 
-	<% if(params[:enable_ssl] == true %>
+	<% if(params[:enable_ssl] == true) %>
 	rewrite /login(.*) https://www.heylu.com/login$1 permanent;
 	rewrite /register(.*) https://www.heylu.com/register$1 permanent;
 	<% end %>
@@ -50,7 +47,7 @@ server {
 	}
 }
 
-<% if(params[:enable_ssl] == true %>
+<% if(params[:enable_ssl] == true) %>
 server {
 	listen 443 default;
 
