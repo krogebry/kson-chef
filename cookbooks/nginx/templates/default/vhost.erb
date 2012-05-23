@@ -9,8 +9,8 @@ upstream <%= @env_name %>_<%= @name %> {
 server {
 	listen 80;
 
-	error_log <%= node.default["nginx"]["fs_log_root"] %>/<%= @env_name %>/<%= @name %>.error_log info;
-	access_log <%= node.default["nginx"]["fs_log_root"] %>/<%= @env_name %>/<%= @name %>.access_log main;
+	error_log <%= node.default["nginx"]["fs_log_root"] %>/<%= @env_name %>/<%= @name %>_error_log info;
+	access_log <%= node.default["nginx"]["fs_log_root"] %>/<%= @env_name %>/<%= @name %>_access_log main;
 
 	<% @server_names.each do |srvName| %>
 	server_name <%= srvName %>;
@@ -51,8 +51,8 @@ server {
 server {
 	listen 443 default;
 
-	error_log <%= node.default["nginx"]["fs_log_root"] %>/<%= @name %>/<%= @env_name %>.error_log info;
-	access_log <%= node.default["nginx"]["fs_log_root"] %>/<%= @name %>/<%= @env_name %>.access_log main;
+	error_log <%= node.default["nginx"]["fs_log_root"] %>/<%= @env_name %>/ssl_<%= @name %>_error_log info;
+	access_log <%= node.default["nginx"]["fs_log_root"] %>/<%= @env_name %>/ssl_<%= @name %>_access_log main;
 
 	<% @server_names.each do |srvName| %>
 	server_name <%= srvName %>;
