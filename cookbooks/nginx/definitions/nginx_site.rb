@@ -79,8 +79,8 @@ EOH
 	end
 
 	## Enable the site
-	link "%s/sites-available/%s" % [node.default["nginx"]["fs_etc_root"],params[:name]] do
-		to "%s/sites-enabled/%s" % [node.default["nginx"]["fs_etc_root"],params[:name]]
+	link "%s/sites-enabled/%s" % [node.default["nginx"]["fs_etc_root"],params[:name]] do
+		to "%s/sites-available/%s" % [node.default["nginx"]["fs_etc_root"],params[:name]] 
 	end
 
 end
