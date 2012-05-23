@@ -30,7 +30,7 @@ define :nginx_site do
 	params[:enable_static] ||= false
 
 	## Create the logging container for the environment.
-	directory "%s/%s" % [node.default["nginx"]["fs_log_root"],params[:env_name]] do
+	directory "%s/%s" % [node.default["nginx"]["fs_log_root"],params[:name]] do
 		owner "ubuntu"
 		group "ubuntu"
 		action :create
