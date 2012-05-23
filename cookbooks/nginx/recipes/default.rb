@@ -11,6 +11,10 @@ package "nginx" do
 	action :install
 end
 
+cookbook_file "/etc/nginx/nginx.conf" do
+	source "nginx.conf"
+end
+
 service "nginx" do
 	action [ :enable, :start ]
 	supports :status => true, :restart => true, :reload => true
