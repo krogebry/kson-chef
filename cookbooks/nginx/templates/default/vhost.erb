@@ -1,0 +1,85 @@
+##
+# Nginx configuration for <%= @name %>
+upstream <%= @env_name %>_<%= @name %> { 
+	<% @upstreams.each do |up_stream| %>
+	server <%= up_stream %>;
+	<% end %>
+	#server 127.0.0.1:6910; 
+	#server 127.0.0.1:6911; 
+	#server 127.0.0.1:6912; 
+}
+
+server {
+	listen 80;
+
+	error_log <%= node.default["nginx"]["fs_log_root"] %>/<%= @name %>/<%= @env_name %>.error_log info;
+	access_log <%= node.default["nginx"]["fs_log_root"] %>/<%= @name %>/<%= @env_name %>.access_log main;
+
+	<% @server_names.each do |srvName| %>
+	server_name <%= srvName %>;
+	<% end %>
+
+	client_max_body_size <%= node.default["nginx"]["client_max_body_size"] %>;
+
+	<% if(@enable_stats == true) %>
+	location /nginx_status {
+		stub_status on;
+		access_log off;
+		allow localhost;
+		deny all;
+	}
+	<% end %>
+
+	error_page	404		/400.html;
+	error_page	500 501 502 503		/500.html;
+	location /400.html { root <%= node.default["nginx"]["fs_www_root"] %>/<%= @name %>/<%= @env_name %>/public/errors/; }
+	location /500.html { root <%= node.default["nginx"]["fs_www_root"] %>/<%= @name %>/<%= @env_name %>/public/errors/; }
+
+	<% if(params[:enable_ssl] == true %>
+	rewrite /login(.*) https://www.heylu.com/login$1 permanent;
+	rewrite /register(.*) https://www.heylu.com/register$1 permanent;
+	<% end %>
+
+	location / {
+		<% if(params[:enable_static] == true) %>
+		root /var/www/heylu/offline/;
+		<% else %>
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_pass http://<%= @env_name %>_<%= @name %>/;
+		<% end %>
+	}
+}
+
+<% if(params[:enable_ssl] == true %>
+server {
+	listen 443 default;
+
+	error_log <%= node.default["nginx"]["fs_log_root"] %>/<%= @name %>/<%= @env_name %>.error_log info;
+	access_log <%= node.default["nginx"]["fs_log_root"] %>/<%= @name %>/<%= @env_name %>.access_log main;
+
+	<% @server_names.each do |srvName| %>
+	server_name <%= srvName %>;
+	<% end %>
+
+	ssl on;
+	ssl_certificate <%= node.default["nginx"]["fs_ssl_root"] %>/<%= @name %>/server.crt;
+	ssl_certificate <%= node.default["nginx"]["fs_ssl_root"] %>/<%= @name %>/server.key;
+
+	error_page	404		/400.html;
+	error_page	500 501 502 503		/500.html;
+	location /400.html { root <%= node.default["nginx"]["fs_www_root"] %>/<%= @name %>/<%= @env_name %>/public/errors/; }
+	location /500.html { root <%= node.default["nginx"]["fs_www_root"] %>/<%= @name %>/<%= @env_name %>/public/errors/; }
+
+	location / {
+		<% if(params[:enable_static] == true) %>
+		root /var/www/heylu/offline/;
+		<% else %>
+		proxy_set_header X-Real-IP $remote_addr;
+		proxy_pass http://<%= @env_name %>_<%= @name %>/;
+		<% end %>
+	}
+}
+<% end %>
+
+
+

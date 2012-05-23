@@ -6,7 +6,7 @@ KSONSoftware chef repo
 = Bootstrapping new node
 
 apt-get install git ruby1.9.1-dev make g++
-gem install chef
+gem install chef bundler
 
 mkdir /var/www
 chown -R ubuntu:ubuntu /var/www
