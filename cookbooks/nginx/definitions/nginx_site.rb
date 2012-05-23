@@ -65,8 +65,8 @@ EOH
 		mode "0755"
 		owner "root"
 		group "root"
-		source "thin_site.yml.erb"
-		cookbook "thin"
+		source "vhost.erb"
+		cookbook "nginx"
 		variables({
 			:name => params[:name],
 			:env_name => params[:env_name],
