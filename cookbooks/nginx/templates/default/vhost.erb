@@ -59,8 +59,8 @@ server {
 	<% end %>
 
 	ssl on;
-	ssl_certificate <%= node.default["nginx"]["fs_ssl_root"] %>/<%= @name %>/server.crt;
-	ssl_certificate_key <%= node.default["nginx"]["fs_ssl_root"] %>/<%= @name %>/server.key;
+	ssl_certificate <%= node.default["nginx"]["fs_ssl_root"] %>/<%= @name %>/server.crt.pem;
+	ssl_certificate_key <%= node.default["nginx"]["fs_ssl_root"] %>/<%= @name %>/server.key.pem;
 
 	error_page	404		/400.html;
 	error_page	500 501 502 503		/500.html;
