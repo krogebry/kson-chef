@@ -22,3 +22,5 @@ template "%s/mongodb.conf" % node.default["mongodb"]["fs_etc_root"] do
 	variables({
 	})
 end
+
+
