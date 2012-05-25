@@ -1,0 +1,36 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          <%= @name %>_<%= @env_name %>
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:     $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      S 0 1 6
+# Short-Description: <%= @name %> initscript
+# Description:       <%= @name %> unicorn controller
+### END INIT INFO
+
+DAEMON=/usr/local/bin/unicorn
+SCRIPT_NAME=/etc/init.d/<%= @name %>_<%= @env_name %>
+#RUN_CMD="${DAEMON} -E <%= @env_name %> -l 0.0.0.0:<%= @port %> -c <%= node.defualt["unicorn"]["fs_app_root"] %>/config.ru "
+RUN_CMD="${DAEMON} -E <%= @env_name %> -c <%= node.defualt["unicorn"]["fs_app_root"] %>/unicorn.rb"
+case "$1" in
+  start)
+        if [ "$USER" = "ubuntu" ]; then
+					$RUN_CMD
+				else
+					su ubuntu -c $RUN_CMD
+				fi
+        ;;
+  stop)
+        $DAEMON stop -C $CONFIG_FILE
+        ;;
+  restart)
+        $DAEMON restart -C $CONFIG_FILE
+        ;;
+  *)
+        echo "Usage: $SCRIPT_NAME {start|stop|restart}" >&2
+        exit 3
+        ;;
+esac
+
+:
