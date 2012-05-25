@@ -36,6 +36,15 @@ define :unicorn_site do
 		recursive true
 	end
 
+	["sockets","pids","logs"].each do |dirName|
+		directory "%s/%s/current/tmp/%s" % [node.default["unicorn"]["fs_app_root"],params[:env_name],dirName] do
+			owner "ubuntu"
+			group "ubuntu"
+			action :create
+			recursive true
+		end
+	end
+
 	## Create the init script.
 	template "/etc/init.d/%s_%s" % [params[:env_name],params[:name]] do
 		mode "0755"
