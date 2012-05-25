@@ -37,7 +37,7 @@ define :unicorn_site do
 	end
 
 	["sockets","pids","logs"].each do |dirName|
-		directory "%s/%s/current/tmp/%s" % [node.default["unicorn"]["fs_app_root"],params[:env_name],dirName] do
+		directory "%s/%s/current/tmp/%s" % [node.default["unicorn"]["fs_app_root"],params[:name],dirName] do
 			owner "ubuntu"
 			group "ubuntu"
 			action :create
