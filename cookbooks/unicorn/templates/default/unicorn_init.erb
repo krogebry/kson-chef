@@ -11,8 +11,8 @@
 
 DAEMON=/usr/local/bin/unicorn
 SCRIPT_NAME=/etc/init.d/<%= @name %>_<%= @env_name %>
-#RUN_CMD="${DAEMON} -E <%= @env_name %> -l 0.0.0.0:<%= @port %> -c <%= node.defualt["unicorn"]["fs_app_root"] %>/config.ru "
-RUN_CMD="${DAEMON} -E <%= @env_name %> -c <%= node.defualt["unicorn"]["fs_app_root"] %>/unicorn.rb"
+#RUN_CMD="${DAEMON} -E <%= @env_name %> -l 0.0.0.0:<%= @port %> -c <%= node.default["unicorn"]["fs_app_root"] %>/config.ru "
+RUN_CMD="${DAEMON} -E <%= @env_name %> -c <%= node.default["unicorn"]["fs_app_root"] %>/unicorn.rb"
 case "$1" in
   start)
         if [ "$USER" = "ubuntu" ]; then
